@@ -1,24 +1,36 @@
 import React from 'react';
-import What from './what';
-import NewGame from './newGame';
-// import './navbar.css';
 
-export default function Header(props) {
-  return (
-    <header>
+// import './navBar.css';
+
+export default class NavBar extends React.Component {
+  onNewGame(event) {
+    event.preventDefault();
+    if (this.props.onNewGame) {
+      this.props.onNewGame();
+    }
+  }
+  onInfo(event) {
+    event.preventDefault();
+    if (this.props.onInfo) {
+      this.props.onInfo();
+    }
+  }
+  render() {
+    return (
       <nav>
         <ul>
           <li>
-            <What />
+            <a href='#' onClick={e => this.onInfo(e)}>
+              What?
+            </a>
           </li>
           <li>
-            <NewGame />
+            <a href='#' onClick={e => this.onNewGame(e)}>
+              New Game 
+            </a>
           </li>
         </ul>
       </nav>
-      <div>
-        <h1>Hot or Cold</h1>
-      </div>
-    </header>
-  )
+    );
+  }
 }
